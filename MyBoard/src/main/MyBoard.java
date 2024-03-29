@@ -232,6 +232,7 @@ public class MyBoard {
 			userEditBoard(idx);
 			break;
 		case 2:
+			userDeleteBoard(idx);
 			break;
 		default:
 			break;
@@ -387,6 +388,11 @@ public class MyBoard {
 		System.out.println("제목: " + board.getTitle());
 		String content = inputString("내용입력");
 		boardManager.updateBoard(board, content);
+		updateUserBoard();
+	}
+
+	private void userDeleteBoard(int idx) {
+		BoardManager.boardList.remove(idx);
 		updateUserBoard();
 	}
 

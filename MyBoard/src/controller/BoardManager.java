@@ -27,7 +27,8 @@ public class BoardManager {
 		BoardNonBlind board = new BoardNonBlind(id, title, content, date);
 		boardList.add(board);
 	};
-
+	
+	/*U(update)*/
 	public void updateBoard(Board board, String content) {
 		boardList.remove(board);
 		board.setContent(content);
@@ -36,4 +37,6 @@ public class BoardManager {
 		BoardNonBlind result = (BoardNonBlind) board;
 		boardList.add(result);
 	}
+	
+	/*D(delete)*/
 }
