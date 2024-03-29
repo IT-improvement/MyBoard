@@ -7,21 +7,12 @@ public abstract class Board {
 	private String content;
 	private String title;
 	private String date;
-	private SimpleDateFormat sdf;
 
-	public Board(String id, String content, String title) {
-		sdf = new SimpleDateFormat("yy년 mm월 dd일 kk:mm");
+	public Board(String id, String title, String content, String date) {
 		this.id = id;
 		this.content = content;
 		this.title = title;
-		this.date = sdf.format(System.currentTimeMillis());
-	}
-
-	public Board(String content, String title) {
-		sdf = new SimpleDateFormat("yy년 mm월 dd일 kk:mm");
-		this.content = content;
-		this.title = title;
-		this.date = sdf.format(System.currentTimeMillis());
+		this.date = date;
 	}
 
 	public String getId() {
@@ -56,4 +47,8 @@ public abstract class Board {
 		this.date = date;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("제목: %s\n" + "글쓴이: %s\n" + "작성시간: %s\n" + "내용\n" + "%s", title, id, date, content);
+	}
 }
