@@ -193,6 +193,7 @@ public class MyBoard {
 			changePw();
 			break;
 		case 3:
+			changName();
 			break;
 		default:
 			break;
@@ -317,6 +318,12 @@ public class MyBoard {
 			return;
 		}
 		changUser(pw, true);
+	}
+
+	// change name Method
+	private void changName() {
+		String name = inputString("이름");
+		changUser(name, false);
 	}
 
 	// changUser Method
