@@ -190,6 +190,7 @@ public class MyBoard {
 			printEachUserInfo();
 			break;
 		case 2:
+			changePw();
 			break;
 		case 3:
 			break;
@@ -302,7 +303,29 @@ public class MyBoard {
 		userInfoSubMenu(sel);
 	}
 
-	//
+	// change password Method
+	private void changePw() {
+		String oldPw = inputString("현재비밀번호");
+		if (!userManager.checkUser(user.getId(), oldPw)) {
+			System.err.println("비밀번호가 일치하지 않습니다.");
+			return;
+		}
+		String pw = inputString("새비밀번호");
+		String pwCheck = inputString("한번더 입력");
+		if (!pw.equals(pwCheck)) {
+			System.err.println("비밀번호가 일치하지 않습니다.");
+			return;
+		}
+		changUser(pw, true);
+	}
+
+	// changUser Method
+	private void changUser(String data, boolean type) {
+		User oldDate = (User) user;
+		list.remove(oldDate);
+		user = userManager.updateUser(oldDate, data, type);
+		list.put((User) user, BoardManager.boardList);
+	}
 
 	/* admin Method */
 	// amdin Method

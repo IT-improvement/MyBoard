@@ -46,6 +46,19 @@ public class UserManager {
 		return result;
 	}
 
+	/* U(update) */
+	public User updateUser(User user, String data, boolean type) {
+		User target = user;
+		userList.remove(target);
+		if(type) {
+			target.setPw(data);
+		}else {
+			target.setName(data);
+		}
+		userList.add(target);
+		return target;
+	}
+
 	/* D(delete) */
 	public void deleteUser(User user) {
 		userList.remove(user);
