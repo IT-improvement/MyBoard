@@ -119,6 +119,13 @@ public class MyBoard {
 		System.out.println(" 이름: " + target.getName());
 	}
 
+	private void userBoardList() {
+		int i=1;
+		for (BoardNonBlind board : BoardManager.boardList) {
+			System.out.println((i++)+")제목: "+board.getTitle()+" 작성일: " +board.getDate());
+		}
+	}
+
 	/* menu Mehthod */
 	// start menu
 	private void start(int sel) {
@@ -177,6 +184,7 @@ public class MyBoard {
 			userInfo();
 			break;
 		case 2:
+			userBoard();
 			break;
 		default:
 			break;
@@ -333,6 +341,12 @@ public class MyBoard {
 		list.remove(oldDate);
 		user = userManager.updateUser(oldDate, data, type);
 		list.put((User) user, BoardManager.boardList);
+	}
+
+	// user Board Method
+	private void userBoard() {
+		userBoardList();
+		int sel = inputNum("삭제할 게시글 선택");
 	}
 
 	/* admin Method */
