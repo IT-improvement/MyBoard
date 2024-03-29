@@ -126,6 +126,7 @@ public class MyBoard {
 	private void userMenu(int sel) {
 		switch (sel) {
 		case 1:
+			signOut();
 			break;
 		case 2:
 			logOut();
@@ -179,7 +180,7 @@ public class MyBoard {
 			this.user = admin;
 			return;
 		}
-		if (!userManager.checkLogin(id, pw)) {
+		if (!userManager.checkUser(id, pw)) {
 			System.err.println("없는아이디거나 비밀번호가 일치하지 않습니다.");
 		}
 		this.user = userManager.selectUser(id);
@@ -187,6 +188,7 @@ public class MyBoard {
 	}
 
 	/* user Method */
+	// user Method
 	private void user() {
 		while (true) {
 			printUser();
@@ -195,6 +197,24 @@ public class MyBoard {
 			if (user == null)
 				break;
 		}
+	}
+
+	// signOut Method
+	private void signOut() {
+		String pw = inputString("Pw");
+		if (!userManager.checkUser(user.getId(), pw)) {
+			System.out.println("비밀번호가 일치하지 않습니다.");
+			return;
+		}
+		deleteUser();
+		logOut();
+	}
+
+	// delete User
+	private void deleteUser() {
+		User target = (User) user;
+		userManager.deleteUser(target);
+		list.remove(target);
 	}
 
 	/* admin Method */

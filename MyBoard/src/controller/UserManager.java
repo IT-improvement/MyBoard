@@ -29,7 +29,7 @@ public class UserManager {
 		return id;
 	}
 
-	public boolean checkLogin(String id, String pw) {
+	public boolean checkUser(String id, String pw) {
 		for (User user : userList)
 			if (user.getId().equals(id))
 				if (user.getPw().equals(pw))
@@ -44,5 +44,10 @@ public class UserManager {
 			if (user.getId().equals(id))
 				result = user;
 		return result;
+	}
+
+	/* D(delete) */
+	public void deleteUser(User user) {
+		userList.remove(user);
 	}
 }
