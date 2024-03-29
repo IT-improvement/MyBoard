@@ -1,9 +1,15 @@
 package main;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 
 import controller.BoardManager;
 import controller.UserManager;
+import dto.Board;
 import dto.Person;
 import unit.Admin;
 import unit.BoardBlind;
@@ -119,11 +125,23 @@ public class MyBoard {
 		System.out.println(" 이름: " + target.getName());
 	}
 
+	// print userBoardList
 	private void userBoardList() {
-		int i=1;
+		int i = 1;
 		for (BoardNonBlind board : BoardManager.boardList) {
-			System.out.println((i++)+")제목: "+board.getTitle()+" 작성일: " +board.getDate());
+			System.out.println((i++) + ")제목: " + board.getTitle() + " 작성일: " + board.getDate());
 		}
+	}
+
+	// print userBoardInfo
+	private void userBoardInfo(int sel) {
+		Board board = BoardManager.boardList.get(sel);
+		System.out.println(board);
+	}
+
+	private void userBoardMenu() {
+		System.out.println("1)게시글 수정");
+		System.out.println("2)게시글 삭제");
 	}
 
 	/* menu Mehthod */
@@ -202,6 +220,17 @@ public class MyBoard {
 			break;
 		case 3:
 			changName();
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void userBoardSubMenu(int sel) {
+		switch (sel) {
+		case 1:
+			break;
+		case 2:
 			break;
 		default:
 			break;
@@ -346,7 +375,11 @@ public class MyBoard {
 	// user Board Method
 	private void userBoard() {
 		userBoardList();
-		int sel = inputNum("삭제할 게시글 선택");
+		int idx = inputNum("게시글 선택") - 1;
+		userBoardInfo(idx);
+		userBoardMenu();
+		int sel = inputNum("메뉴 선텍");
+		userBoardSubMenu(sel);
 	}
 
 	/* admin Method */
