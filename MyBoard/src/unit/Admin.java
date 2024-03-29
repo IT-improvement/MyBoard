@@ -5,8 +5,8 @@ import model.Adminable;
 
 public class Admin extends Person implements Adminable {
 
-	public Admin(String id, String pw) {
-		super(id, pw);
+	public Admin() {
+		super("admin", "1234");
 	}
 
 }

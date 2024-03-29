@@ -3,6 +3,8 @@ package main;
 import java.util.*;
 
 import controller.UserManager;
+import dto.Person;
+import unit.Admin;
 import unit.BoardBlind;
 import unit.BoardNonBlind;
 import unit.User;
@@ -13,11 +15,13 @@ public class MyBoard {
 
 	private Map<User, ArrayList<BoardNonBlind>> list = new HashMap<>();
 	private Set<BoardBlind> unknownList = new HashSet<>();
-	private User user;
+	private Person user;
 	private UserManager userManager;
+	private Admin admin;
 
 	public MyBoard() {
 		userManager = UserManager.getInstance();
+		admin = new Admin();
 	}
 
 	private int inputNum(String message) {
@@ -144,7 +148,10 @@ public class MyBoard {
 	private void logIn() {
 		String id = inputString("ID");
 		String pw = inputString("PW");
-
+		if (id.equals(admin.getId()) && pw.equals(admin.pw)) {
+			this.user = admin;
+			return;
+		}
 		if (!userManager.checkLogin(id, pw)) {
 			System.err.println("없는아이디거나 비밀번호가 일치하지 않습니다.");
 		}
