@@ -47,6 +47,12 @@ public class MyBoard {
 			printStart();
 			int sel = inputNum("메뉴입력");
 			start(sel);
+			if (user != null) {
+				if (user.isPower())
+					admin();
+				else
+					user();
+			}
 		}
 	}
 
@@ -105,10 +111,9 @@ public class MyBoard {
 	private void adminMenu(int sel) {
 		switch (sel) {
 		case 1:
-			signUp();
+			logOut();
 			break;
 		case 2:
-			logIn();
 			break;
 		case 3:
 			break;
@@ -118,11 +123,12 @@ public class MyBoard {
 	}
 
 	// userMenu
-	private void User(int sel) {
+	private void userMenu(int sel) {
 		switch (sel) {
 		case 1:
 			break;
 		case 2:
+			logOut();
 			break;
 		case 3:
 			break;
@@ -132,7 +138,12 @@ public class MyBoard {
 			break;
 		}
 	}
-	
+
+	// logOut
+	private void logOut() {
+		user = null;
+	}
+
 	/* start method */
 	// sighUp Method
 	private void signUp() {
@@ -172,10 +183,18 @@ public class MyBoard {
 			System.err.println("없는아이디거나 비밀번호가 일치하지 않습니다.");
 		}
 		this.user = userManager.selectUser(id);
-		if (user.isPower())
-			admin();
-//		 else 
-//			user();
+
+	}
+
+	/* user Method */
+	private void user() {
+		while (true) {
+			printUser();
+			int sel = inputNum("사용자메뉴 선택");
+			userMenu(sel);
+			if (user == null)
+				break;
+		}
 	}
 
 	/* admin Method */
@@ -185,6 +204,8 @@ public class MyBoard {
 			printAdmin();
 			int sel = inputNum("관리자메뉴 선택");
 			adminMenu(sel);
+			if (user == null)
+				break;
 		}
 	}
 }
