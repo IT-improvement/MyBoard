@@ -4,6 +4,7 @@ public abstract class Person {
 	private String id;
 	private String pw;
 	private String name;
+	private boolean power;
 
 	public String getId() {
 		return id;
@@ -28,5 +29,13 @@ public abstract class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public boolean isPower() {
+		return power;
+	}
+
+	public void setPower(boolean power) {
+		this.power = power;
+	};
 
 }
