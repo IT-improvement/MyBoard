@@ -2,6 +2,7 @@ package main;
 
 import java.util.*;
 
+import controller.BoardManager;
 import controller.UserManager;
 import dto.Person;
 import unit.Admin;
@@ -13,15 +14,26 @@ public class MyBoard {
 
 	private Scanner scan = new Scanner(System.in);
 
-	private Map<User, ArrayList<BoardNonBlind>> list = new HashMap<>();
-	private Set<BoardBlind> unknownList = new HashSet<>();
+	private Map<User, ArrayList<BoardNonBlind>> list;
+	public static Set<BoardBlind> unknownList;
 	private Person user;
 	private UserManager userManager;
+	private BoardManager boardManager;
 	private Admin admin;
+
+	private int userCount;
+	private int boardCount;
 
 	public MyBoard() {
 		userManager = UserManager.getInstance();
+		boardManager = BoardManager.getInsatnce();
+
+		list = new HashMap<>();
+		unknownList = new HashSet<>();
+
 		admin = new Admin();
+		userCount = boardCount = 0;
+		userCount++;
 	}
 
 	private int inputNum(String message) {
@@ -60,6 +72,8 @@ public class MyBoard {
 	private void printCheck() {
 		System.out.println("list: " + list);
 		System.out.println("log: " + user);
+		System.out.println("user수: " + userCount);
+		System.out.println("board수: " + boardCount);
 	}
 
 	/* print */
@@ -87,8 +101,15 @@ public class MyBoard {
 
 	// print userSubmenu(4.마이페이지)
 	private void printUserSubMenu() {
-		System.out.println("1)회원정보");
+		System.out.println("1)회원정보관리");
 		System.out.println("2)게시글 관리");
+	}
+
+	// print userInfo
+	private void printUserInfo() {
+		System.out.println("1)회원정보보기");
+		System.out.println("2)비밀번호 변경");
+		System.out.println("3)이름 변경");
 	}
 
 	/* menu Mehthod */
@@ -132,8 +153,37 @@ public class MyBoard {
 			logOut();
 			break;
 		case 3:
+			addBoard();
 			break;
 		case 4:
+			myPage();
+			break;
+		default:
+			break;
+		}
+	}
+
+	// myPage subMenu
+	private void userSubMenu(int sel) {
+		switch (sel) {
+		case 1:
+			userInfo();
+			break;
+		case 2:
+			break;
+		default:
+			break;
+		}
+	}
+
+	// userInfo subMenu
+	private void userInfoSubMenu(int sel) {
+		switch (sel) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
 			break;
 		default:
 			break;
@@ -163,6 +213,7 @@ public class MyBoard {
 			return;
 		}
 		addUser(id, pwCheck, name);
+		userCount++;
 	}
 
 	// addUser Method
@@ -184,7 +235,18 @@ public class MyBoard {
 			System.err.println("없는아이디거나 비밀번호가 일치하지 않습니다.");
 		}
 		this.user = userManager.selectUser(id);
+		BoardManager.boardList = list.get((User) user);
 
+	}
+
+	// addBoard
+	private void addBoard() {
+		String title = inputString("제목");
+		String content = inputString("내용");
+		User target = (User) user;
+		boardManager.addBoard(target.getId(), title, content);
+		list.replace((User) user, BoardManager.boardList);
+		boardCount++;
 	}
 
 	/* user Method */
@@ -207,6 +269,7 @@ public class MyBoard {
 			return;
 		}
 		deleteUser();
+		userCount--;
 		logOut();
 	}
 
@@ -217,6 +280,22 @@ public class MyBoard {
 		list.remove(target);
 	}
 
+	// myPage Method
+	private void myPage() {
+		printUserSubMenu();
+		int sel = inputNum("마이페이지메뉴");
+		userSubMenu(sel);
+	}
+
+	// userInfo Method
+	private void userInfo() {
+		printUserInfo();
+		int sel = inputNum("회원정보메뉴");
+		userInfoSubMenu(sel);
+	}
+	
+	// 
+	
 	/* admin Method */
 	// amdin Method
 	private void admin() {
