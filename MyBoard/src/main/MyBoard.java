@@ -63,7 +63,7 @@ public class MyBoard {
 
 	public void run() {
 		while (true) {
-			printCheck();
+			// printCheck();
 			printStart();
 			int sel = inputNum("메뉴입력");
 			start(sel);
@@ -149,7 +149,7 @@ public class MyBoard {
 		System.out.println("2)게시글 삭제");
 		System.out.println("*)나가기");
 	}
-	
+
 	// print not anonyMity Board List
 	private void printBoardNonBlind() {
 		System.out.println("=====실명게시판======");
@@ -161,12 +161,28 @@ public class MyBoard {
 				System.out.println((++i) + ")제목: " + board.getTitle() + " 글쓴이: " + board.getId());
 			}
 		}
+		System.out.println("=====총 " + i + "개======");
 	}
-	
+
+	// print anonyMity Board List
+	private void printBoardBlind() {
+		System.out.println("=====익명게시판======");
+		int i = 0;
+		for (BoardBlind board : unknownList) {
+			System.out.println((++i) + ")제목: " + board.getTitle() + " 글쓴이: " + board.getId());
+		}
+		System.out.println("=====총 " + i + "개======");
+	}
 
 	// print all Board List
 	private void printAllBoard() {
 		printBoardNonBlind();
+		printBoardBlind();
+	}
+
+	// print select all board guide message
+	private void printAllBoardGuide() {
+		System.out.println("보고싶은 게시글 테마 먼저 입력(실명 / 익명)후\n" + "번호 입력 ");
 	}
 
 	/* menu Mehthod */
@@ -328,6 +344,34 @@ public class MyBoard {
 	// allBoard method
 	private void allBoard() {
 		printAllBoard();
+		printAllBoardGuide();
+		String type = inputString("종류입력");
+		int index = inputNum("번호 입력") - 1;
+		printBoardInfo(type, index);
+	}
+
+	private void printBoardInfo(String type, int index) {
+		Board target = null;
+		if (type.equals("실명")) {
+			int i = 0;
+			Set<User> ketSet = list.keySet();
+			for (User user : ketSet) {
+				ArrayList<BoardNonBlind> boards = list.get(user);
+				for (BoardNonBlind board : boards) {
+					++i;
+					if (i == index)
+						target = board;
+				}
+			}
+		} else if (type.equals("익명")) {
+			int i = 0;
+			for (BoardBlind board : unknownList) {
+				i++;
+				if (i == index)
+					target = board;
+			}
+		}
+		System.out.println(target);
 	}
 
 	/* user Method */
