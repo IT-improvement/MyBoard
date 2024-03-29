@@ -6,6 +6,12 @@ public abstract class Person {
 	private String name;
 	private boolean power;
 
+	public Person(String id, String pw, String name) {
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+	}
+
 	public String getId() {
 		return id;
 	}
