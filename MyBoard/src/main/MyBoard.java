@@ -112,6 +112,13 @@ public class MyBoard {
 		System.out.println("3)이름 변경");
 	}
 
+	// print eachUserInfo
+	private void printEachUserInfo() {
+		User target = (User) user;
+		System.out.print("아이디: " + target);
+		System.out.println(" 이름: " + target.getName());
+	}
+
 	/* menu Mehthod */
 	// start menu
 	private void start(int sel) {
@@ -180,6 +187,7 @@ public class MyBoard {
 	private void userInfoSubMenu(int sel) {
 		switch (sel) {
 		case 1:
+			printEachUserInfo();
 			break;
 		case 2:
 			break;
@@ -293,9 +301,9 @@ public class MyBoard {
 		int sel = inputNum("회원정보메뉴");
 		userInfoSubMenu(sel);
 	}
-	
-	// 
-	
+
+	//
+
 	/* admin Method */
 	// amdin Method
 	private void admin() {
