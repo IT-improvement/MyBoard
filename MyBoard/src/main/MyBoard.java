@@ -226,9 +226,10 @@ public class MyBoard {
 		}
 	}
 
-	private void userBoardSubMenu(int sel) {
+	private void userBoardSubMenu(int sel, int idx) {
 		switch (sel) {
 		case 1:
+			userEditBoard(idx);
 			break;
 		case 2:
 			break;
@@ -287,16 +288,6 @@ public class MyBoard {
 
 	}
 
-	// addBoard
-	private void addBoard() {
-		String title = inputString("제목");
-		String content = inputString("내용");
-		User target = (User) user;
-		boardManager.addBoard(target.getId(), title, content);
-		list.replace((User) user, BoardManager.boardList);
-		boardCount++;
-	}
-
 	/* user Method */
 	// user Method
 	private void user() {
@@ -326,6 +317,15 @@ public class MyBoard {
 		User target = (User) user;
 		userManager.deleteUser(target);
 		list.remove(target);
+	}
+
+	// addBoard
+	private void addBoard() {
+		String title = inputString("제목");
+		String content = inputString("내용");
+		User target = (User) user;
+		boardManager.addBoard(target.getId(), title, content);
+		updateUserBoard();
 	}
 
 	// myPage Method
@@ -379,7 +379,20 @@ public class MyBoard {
 		userBoardInfo(idx);
 		userBoardMenu();
 		int sel = inputNum("메뉴 선텍");
-		userBoardSubMenu(sel);
+		userBoardSubMenu(sel, idx);
+	}
+
+	private void userEditBoard(int idx) {
+		Board board = BoardManager.boardList.get(idx);
+		System.out.println("제목: " + board.getTitle());
+		String content = inputString("내용입력");
+		boardManager.updateBoard(board, content);
+		updateUserBoard();
+	}
+
+	private void updateUserBoard() {
+		list.replace((User) user, BoardManager.boardList);
+		boardCount++;
 	}
 
 	/* admin Method */
