@@ -88,6 +88,7 @@ public class MyBoard {
 		System.out.println("1)회원가입");
 		System.out.println("2)로그인");
 		System.out.println("3)게시글보기");
+		System.out.println("4)게시글작성");
 	}
 
 	// print Admin Menu
@@ -142,6 +143,7 @@ public class MyBoard {
 	private void userBoardMenu() {
 		System.out.println("1)게시글 수정");
 		System.out.println("2)게시글 삭제");
+		System.out.println("*)나가기");
 	}
 
 	/* menu Mehthod */
@@ -155,6 +157,8 @@ public class MyBoard {
 			logIn();
 			break;
 		case 3:
+			break;
+		case 4:
 			break;
 		default:
 			break;
