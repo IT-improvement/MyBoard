@@ -46,7 +46,7 @@ public class MyBoard {
 			printCheck();
 			printStart();
 			int sel = inputNum("메뉴입력");
-			Start(sel);
+			start(sel);
 		}
 	}
 
@@ -66,8 +66,9 @@ public class MyBoard {
 
 	// print Admin Menu
 	private void printAdmin() {
-		System.out.println("1)유저관리");
-		System.out.println("2)게시글관리");
+		System.out.println("1)로그아웃");
+		System.out.println("2)유저관리");
+		System.out.println("3)게시글관리");
 	}
 
 	// print User Menu
@@ -86,7 +87,22 @@ public class MyBoard {
 
 	/* menu Mehthod */
 	// start menu
-	private void Start(int sel) {
+	private void start(int sel) {
+		switch (sel) {
+		case 1:
+			signUp();
+			break;
+		case 2:
+			logIn();
+			break;
+		case 3:
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void adminMenu(int sel) {
 		switch (sel) {
 		case 1:
 			signUp();
@@ -116,7 +132,7 @@ public class MyBoard {
 			break;
 		}
 	}
-
+	
 	/* start method */
 	// sighUp Method
 	private void signUp() {
@@ -156,5 +172,19 @@ public class MyBoard {
 			System.err.println("없는아이디거나 비밀번호가 일치하지 않습니다.");
 		}
 		this.user = userManager.selectUser(id);
+		if (user.isPower())
+			admin();
+//		 else 
+//			user();
+	}
+
+	/* admin Method */
+	// amdin Method
+	private void admin() {
+		while (true) {
+			printAdmin();
+			int sel = inputNum("관리자메뉴 선택");
+			adminMenu(sel);
+		}
 	}
 }
