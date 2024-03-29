@@ -66,8 +66,11 @@ public class MyBoard {
 		System.out.println("4)마이페이지");
 	}
 	
+	//print userSubmenu(4.마이페이지)
 	private void printUserSubMenu() {
 		System.out.println("1)회원정보");
 		System.out.println("2)게시글 관리");
 	}
+	
+	
 }
