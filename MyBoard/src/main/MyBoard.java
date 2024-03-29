@@ -48,7 +48,8 @@ public class MyBoard {
 
 	/* check */
 	private void printCheck() {
-		System.out.println(list);
+		System.out.println("list: " + list);
+		System.out.println("log: " + user);
 	}
 
 	/* print */
@@ -87,6 +88,7 @@ public class MyBoard {
 			signUp();
 			break;
 		case 2:
+			logIn();
 			break;
 		case 3:
 			break;
@@ -112,7 +114,7 @@ public class MyBoard {
 	}
 
 	/* start method */
-	//sighUp Method
+	// sighUp Method
 	private void signUp() {
 		String id = inputString("ID");
 		id = userManager.idCheck(id);
@@ -120,7 +122,7 @@ public class MyBoard {
 			System.err.println("있는아이디입니다.");
 			return;
 		}
-		
+
 		String name = inputString("name");
 		String pw = inputString("pw");
 		String pwCheck = inputString("pwCheck");
@@ -130,11 +132,22 @@ public class MyBoard {
 		}
 		addUser(id, pwCheck, name);
 	}
-	
-	//addUser Method
+
+	// addUser Method
 	private void addUser(String id, String pw, String name) {
 		User user = new User(id, pw, name);
-		userManager.addUser(user); //UserManager class-> add of userList
+		userManager.addUser(user); // UserManager class-> add of userList
 		list.put(user, new ArrayList<BoardNonBlind>()); // add of list
+	}
+
+	// login Method
+	private void logIn() {
+		String id = inputString("ID");
+		String pw = inputString("PW");
+
+		if (!userManager.checkLogin(id, pw)) {
+			System.err.println("없는아이디거나 비밀번호가 일치하지 않습니다.");
+		}
+		this.user = userManager.selectUser(id);
 	}
 }

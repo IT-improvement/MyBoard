@@ -28,4 +28,21 @@ public class UserManager {
 				return "";
 		return id;
 	}
+
+	public boolean checkLogin(String id, String pw) {
+		for (User user : userList)
+			if (user.getId().equals(id))
+				if (user.getPw().equals(pw))
+					return true;
+
+		return false;
+	}
+
+	public User selectUser(String id) {
+		User result = null;
+		for (User user : userList)
+			if (user.getId().equals(id))
+				result = user;
+		return result;
+	}
 }
