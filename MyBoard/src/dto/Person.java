@@ -13,6 +13,10 @@ public abstract class Person {
 		power = this instanceof Adminable ? true : false;
 	}
 
+	public boolean isPower() {
+		return power;
+	}
+
 	public String getId() {
 		return id;
 	}
