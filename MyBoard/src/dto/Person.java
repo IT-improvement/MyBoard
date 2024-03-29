@@ -16,10 +16,6 @@ public abstract class Person {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getPw() {
 		return pw;
 	}
@@ -44,4 +40,8 @@ public abstract class Person {
 		this.power = power;
 	};
 
+	@Override
+	public String toString() {
+		return id;
+	}
 }
