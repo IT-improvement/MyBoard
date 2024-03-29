@@ -1,8 +1,10 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -141,10 +143,30 @@ public class MyBoard {
 		System.out.println(board);
 	}
 
+	// print userBoard Menu
 	private void userBoardMenu() {
 		System.out.println("1)게시글 수정");
 		System.out.println("2)게시글 삭제");
 		System.out.println("*)나가기");
+	}
+	
+	// print not anonyMity Board List
+	private void printBoardNonBlind() {
+		System.out.println("=====실명게시판======");
+		int i = 0;
+		Set<User> ketSet = list.keySet();
+		for (User user : ketSet) {
+			ArrayList<BoardNonBlind> boards = list.get(user);
+			for (BoardNonBlind board : boards) {
+				System.out.println((++i) + ")제목: " + board.getTitle() + " 글쓴이: " + board.getId());
+			}
+		}
+	}
+	
+
+	// print all Board List
+	private void printAllBoard() {
+		printBoardNonBlind();
 	}
 
 	/* menu Mehthod */
@@ -158,6 +180,7 @@ public class MyBoard {
 			logIn();
 			break;
 		case 3:
+			allBoard();
 			break;
 		case 4:
 			createBoard();
@@ -300,6 +323,11 @@ public class MyBoard {
 		String title = inputString("제목입력");
 		String content = inputString("내용입력");
 		boardManager.addBoard(title, content);
+	}
+
+	// allBoard method
+	private void allBoard() {
+		printAllBoard();
 	}
 
 	/* user Method */
