@@ -80,6 +80,7 @@ public class MyBoard {
 		System.out.println("log: " + user);
 		System.out.println("user수: " + userCount);
 		System.out.println("board수: " + boardCount);
+		System.out.println(unknownList);
 	}
 
 	/* print */
@@ -159,6 +160,7 @@ public class MyBoard {
 		case 3:
 			break;
 		case 4:
+			createBoard();
 			break;
 		default:
 			break;
@@ -291,6 +293,13 @@ public class MyBoard {
 		this.user = userManager.selectUser(id);
 		BoardManager.boardList = list.get((User) user);
 
+	}
+
+	// create blind board
+	private void createBoard() {
+		String title = inputString("제목입력");
+		String content = inputString("내용입력");
+		boardManager.addBoard(title, content);
 	}
 
 	/* user Method */
