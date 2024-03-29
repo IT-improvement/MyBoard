@@ -243,6 +243,7 @@ public class MyBoard {
 		}
 		if (!userManager.checkUser(id, pw)) {
 			System.err.println("없는아이디거나 비밀번호가 일치하지 않습니다.");
+			return;
 		}
 		this.user = userManager.selectUser(id);
 		BoardManager.boardList = list.get((User) user);
