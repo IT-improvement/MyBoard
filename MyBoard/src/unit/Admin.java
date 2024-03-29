@@ -1,11 +1,12 @@
 package unit;
 
 import dto.Person;
+import model.Adminable;
 
-public class Admin extends Person {
+public class Admin extends Person implements Adminable {
 
-	public Admin(String id, String pw, String name) {
-		super(id, pw, name);
+	public Admin(String id, String pw) {
+		super(id, pw);
 	}
 
 }

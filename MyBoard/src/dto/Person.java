@@ -1,44 +1,21 @@
 package dto;
 
+import model.Adminable;
+
 public abstract class Person {
 	private String id;
-	private String pw;
-	private String name;
+	public String pw;
 	private boolean power;
 
-	public Person(String id, String pw, String name) {
+	public Person(String id, String pw) {
 		this.id = id;
 		this.pw = pw;
-		this.name = name;
+		power = this instanceof Adminable ? true : false;
 	}
 
 	public String getId() {
 		return id;
 	}
-
-	public String getPw() {
-		return pw;
-	}
-
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public boolean isPower() {
-		return power;
-	}
-
-	public void setPower(boolean power) {
-		this.power = power;
-	};
 
 	@Override
 	public String toString() {
