@@ -358,18 +358,21 @@ public class MyBoard {
 			for (User user : ketSet) {
 				ArrayList<BoardNonBlind> boards = list.get(user);
 				for (BoardNonBlind board : boards) {
-					++i;
 					if (i == index)
 						target = board;
+					++i;
 				}
 			}
 		} else if (type.equals("익명")) {
 			int i = 0;
 			for (BoardBlind board : unknownList) {
-				i++;
 				if (i == index)
 					target = board;
+				i++;
 			}
+		}
+		if (target == null) {
+			return;
 		}
 		System.out.println(target);
 	}
