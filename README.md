@@ -9,6 +9,7 @@
 <img src="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/class%20diagram.png">
 <h3>Flow Chart</h3><br>
 <img src ="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/flow%20chart.png">
-<h3>User 시연영상</h3>
+<h1>시연영상</h1>
+<h3>USER</h3><br>
 <img src="">
 </div>
