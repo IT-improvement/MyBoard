@@ -212,6 +212,7 @@ public class MyBoard {
 			logOut();
 			break;
 		case 2:
+			manageUser();
 			break;
 		case 3:
 			break;
@@ -499,5 +500,10 @@ public class MyBoard {
 			if (user == null)
 				break;
 		}
+	}
+	
+	//manage User
+	private void manageUser() {
+		
 	}
 }
