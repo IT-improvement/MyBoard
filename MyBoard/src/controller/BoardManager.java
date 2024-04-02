@@ -54,5 +54,4 @@ public class BoardManager {
 		boardList.add(result);
 	}
 
-	/* D(delete) */
 }

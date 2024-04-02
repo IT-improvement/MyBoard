@@ -233,8 +233,6 @@ public class MyBoard {
 		case 3:
 			manageBoard();
 			break;
-		case 4:
-			break;
 		default:
 			break;
 		}
@@ -577,5 +575,60 @@ public class MyBoard {
 	// manage
 	private void manageBoard() {
 		printAllBoard();
+		printAllBoardGuide();
+		String type = inputString("종류입력");
+		if (type.equals("0")) {
+			return;
+		}
+		int index = inputNum("번호 입력") - 1;
+		Board board = targetBoard(type, index);
+		if (board == null) {
+			System.err.println("없는 게시글입니다.");
+			return;
+		}
+		deleteBoard(type, board);
+	}
+
+	// target Board
+	private Board targetBoard(String type, int index) {
+		Board target = null;
+		if (type.equals("실명")) {
+			int i = 0;
+			Set<User> ketSet = list.keySet();
+			for (User user : ketSet) {
+				if (user.getId().equals("admin"))
+					continue;
+				ArrayList<BoardNonBlind> boards = list.get(user);
+				for (BoardNonBlind board : boards) {
+					if (i == index)
+						target = board;
+					++i;
+				}
+			}
+		} else if (type.equals("익명")) {
+			int i = 0;
+			for (BoardBlind board : unknownList) {
+				if (i == index)
+					target = board;
+				i++;
+			}
+		}
+		return target;
+	}
+
+	private void deleteBoard(String type, Board board) {
+		ArrayList<User> userList = userManager.getUserList();
+		User target = null;
+		for (User user : userList) {
+			if (user.getId().equals(board.getId()))
+				target = user;
+		}
+		if (type.equals("실명")) {
+			BoardManager.boardList = list.get(target);
+			BoardManager.boardList.remove(board);
+		} else if (type.equals("익명")) {
+			unknownList.remove(board);
+		}
+		list.replace(target, BoardManager.boardList);
 	}
 }
