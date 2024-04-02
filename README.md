@@ -12,4 +12,6 @@
 <h1>시연영상</h1>
 <h3>USER</h3><br>
 <img src="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/user.gif">
+<h3>ADMIN</h3><br>
+<img src="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/admin.gif">
 </div>
