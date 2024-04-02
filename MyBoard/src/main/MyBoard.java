@@ -1,10 +1,8 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -156,6 +154,8 @@ public class MyBoard {
 		int i = 0;
 		Set<User> ketSet = list.keySet();
 		for (User user : ketSet) {
+			if (user.getId().equals("admin"))
+				continue;
 			ArrayList<BoardNonBlind> boards = list.get(user);
 			for (BoardNonBlind board : boards) {
 				System.out.println((++i) + ")제목: " + board.getTitle() + " 글쓴이: " + board.getId());
@@ -183,6 +183,22 @@ public class MyBoard {
 	// print select all board guide message
 	private void printAllBoardGuide() {
 		System.out.println("보고싶은 게시글 테마 먼저 입력(실명 / 익명)후\n" + "번호 입력 ");
+		System.out.println("뒤로가기: 0번");
+	}
+
+	// print manager User
+	private void printManageUser() {
+		ArrayList<User> userList = userManager.getUserList();
+
+		int i = 0;
+		for (User user : userList) {
+			System.out.println((++i) + ")아이디: " + user.getId());
+		}
+	}
+
+	private void printdeleteUser() {
+		System.out.println("1)삭제");
+		System.out.println("*)뒤로가기");
 	}
 
 	/* menu Mehthod */
@@ -215,6 +231,9 @@ public class MyBoard {
 			manageUser();
 			break;
 		case 3:
+			manageBoard();
+			break;
+		case 4:
 			break;
 		default:
 			break;
@@ -285,6 +304,16 @@ public class MyBoard {
 		}
 	}
 
+	private void managedeleteUser(int sel, User user) {
+		switch (sel) {
+		case 1:
+			deleteUser(user);
+			break;
+		default:
+			break;
+		}
+	}
+
 	// logOut
 	private void logOut() {
 		user = null;
@@ -347,6 +376,9 @@ public class MyBoard {
 		printAllBoard();
 		printAllBoardGuide();
 		String type = inputString("종류입력");
+		if (type.equals("0")) {
+			return;
+		}
 		int index = inputNum("번호 입력") - 1;
 		printBoardInfo(type, index);
 	}
@@ -357,6 +389,8 @@ public class MyBoard {
 			int i = 0;
 			Set<User> ketSet = list.keySet();
 			for (User user : ketSet) {
+				if (user.getId().equals("admin"))
+					continue;
 				ArrayList<BoardNonBlind> boards = list.get(user);
 				for (BoardNonBlind board : boards) {
 					if (i == index)
@@ -501,9 +535,47 @@ public class MyBoard {
 				break;
 		}
 	}
-	
-	//manage User
+
+	// print manager User
+	private User printTargetUser(int sel) {
+		ArrayList<User> userList = userManager.getUserList();
+		int i = 0;
+		for (User user : userList) {
+			++i;
+			if (i == sel)
+				return user;
+		}
+		return null;
+	}
+
+	// manage User
 	private void manageUser() {
-		
+		printManageUser();
+		int sel = inputNum("보고싶은 번호 입력(뒤로가기:0)");
+		if (sel == 0)
+			return;
+		User user = printTargetUser(sel);
+		if (user == null) {
+			System.out.println("없는번호입니다.");
+			return;
+		}
+		String result = "아이디: " + user.getId();
+		result += "\n비밀번호: " + user.getPw();
+		result += "\n이름: " + user.getName();
+		System.out.println(result);
+		printdeleteUser();
+		int menu = inputNum("메뉴선택");
+		managedeleteUser(menu, user);
+	}
+
+	// deleteUser
+	private void deleteUser(User user) {
+		list.remove(user);
+		userManager.deleteUser(user);
+	}
+
+	// manage
+	private void manageBoard() {
+		printAllBoard();
 	}
 }
