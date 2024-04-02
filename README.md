@@ -6,7 +6,7 @@
 Java언어만 사용하여 Console 게시판 개발
 <h1>설명</h1>
 <h3>class Diagram</h3><br>
-<img src="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/class%20diagram.png">
+<img src="">
 <h3>Flow Chart</h3><br>
 <img src ="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/flow%20chart.png">
 </div>
