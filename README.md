@@ -1,5 +1,5 @@
 
-![header](https://capsule-render.vercel.app/api?type=transparent&color=timeAuto&height=300&section=header&text=CONSOLE%20BOARD&fontSize=90&fontColor=d6ace6&animation=scaleIn)
+![header](https://capsule-render.vercel.app/api?type=transparent&color=timeAuto&height=300&section=header&text=CONSOLE%20BOARD&fontSize=90&fontColor=703EE5&animation=scaleIn&desc=Only%20JAVA&descSize=30&descAlign=85&descAlignY=70)
 <div align=center>
 
 <h1>소개</h1><br>
