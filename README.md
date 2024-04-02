@@ -1,7 +1,9 @@
 
-![header](https://capsule-render.vercel.app/api?type=transparent&color=auto&height=300&section=header&text=CONSOLE%20BOARD&fontSize=90&fontColor=d6ace6&animation=scaleIn)
+![header](https://capsule-render.vercel.app/api?type=transparent&color=timeAuto&height=300&section=header&text=CONSOLE%20BOARD&fontSize=90&fontColor=d6ace6&animation=scaleIn)
+<div align=center>
 
-## 소개 <br>
-## 설명 <br>
-### Flow Chart <hr>
-![flowchart](https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/flow%20chart.png)
+<h1>소개</h1> <br>
+<h1>설명</h1><br> 
+<h1>Flow Chart</h1><br>
+<img src ="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/flow%20chart.png">
+</div>
