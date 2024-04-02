@@ -9,6 +9,6 @@ Java언어만 사용하여 Console 게시판 개발
 <img src="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/class%20diagram.png">
 <h3>Flow Chart</h3><br>
 <img src ="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/flow%20chart.png">
-</div>
 <h3>User 시연영상</h3>
 <img src="https://github.com/IT-improvement/MyBoard/blob/master/MyBoard/user.gif">
+</div>
